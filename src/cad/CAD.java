@@ -1,23 +1,48 @@
 package cad;
 
-import javax.swing.JButton;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class CAD {
+	private JFrame frame;
+	private MenuBar menuBar;
+	private ToolsPanel toolPanel;
+	private ColorPanel colorPanel;
+	private static DrawPanel drawPanel;
+	
+	public CAD(){
+		frame = new JFrame("miniCAD");
+		
+		menuBar = new MenuBar();
+		toolPanel = new ToolsPanel(new GridLayout(5,1));
+		colorPanel = new ColorPanel(new GridLayout(3,4));
+		drawPanel = new DrawPanel();
+		
+		toolPanel.add(colorPanel);
+		
+		frame.add(drawPanel);
+		frame.add(toolPanel, BorderLayout.EAST);
+		frame.setJMenuBar(menuBar);
+	}
+	
+	public void draw(int width, int height)
+	{
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+		frame.setSize(width, height);
+		frame.setVisible(true);
+	}
+	
+	public static void setColor(Color color){
+		drawPanel.setColor(color);
+	}
 
 	public static void main(String[] args) {
-		JFrame frame = new JFrame("CAD制图");
-		Picture picture = new Picture(420, 300);
-		JButton LineButton = new JButton("直线");
-		JButton RectButton = new JButton("矩形");
-		JButton CircButton = new JButton("圆");
-		JButton WordButton = new JButton("文字");
-		frame.add(picture);
-		picture.draw();
-		frame.pack();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
+		
+		CAD cad = new CAD();
+		cad.draw(800,700);
 	}
 
 }
