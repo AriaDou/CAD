@@ -13,8 +13,8 @@ public class ToolsPanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 4245250515525130302L;
-	private static String currentButton = "直线";
-	private static String word = "null";
+	private String currentButton = "直线";
+	private String word = "null";
 	private String[] arrayButton = {"直线", "矩形", "圆", "文字"};
 
 	public ToolsPanel(LayoutManager arg0){
@@ -30,18 +30,20 @@ public class ToolsPanel extends JPanel {
 					currentButton = e.getActionCommand();
 					if(currentButton.equals("文字")){
 						word = JOptionPane.showInputDialog("Please input a value");
+						CAD.setWord();
 					}
+					CAD.setButton();
 				}
 			});
 			this.add(button);
 		}
 	}
 
-	public static String getCurrentButton() {
+	public String getCurrentButton() {
 		return currentButton;
 	}
 
-	public static String getWord() {
+	public String getWord() {
 		return word;
 	}
 	

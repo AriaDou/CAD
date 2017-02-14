@@ -30,13 +30,18 @@ public class ColorPanel extends JPanel {
 				
 				@Override
 				public void mousePressed(MouseEvent e) {
-					changeColor = ((JPanel) e.getSource()).getBackground();
-					CAD.setColor(changeColor);
+					JPanel colorItem = (JPanel) e.getSource();
+					changeColor = colorItem.getBackground();
+					CAD.setColor();
 				}
 				
 			});
 			add(colorPanelItem);
 		}
+	}
+
+	public Color getChangeColor() {
+		return changeColor;
 	}
 
 }

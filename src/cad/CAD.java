@@ -1,15 +1,25 @@
 package cad;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.GridLayout;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import shapes.Shape;
 
 public class CAD {
-	private JFrame frame;
-	private MenuBar menuBar;
-	private ToolsPanel toolPanel;
-	private ColorPanel colorPanel;
+	private static JFrame frame;
+	private static MenuBar menuBar;
+	private static ToolsPanel toolPanel;
+	private static ColorPanel colorPanel;
 	private static DrawPanel drawPanel;
 	
 	public CAD(){
@@ -35,8 +45,54 @@ public class CAD {
 		frame.setVisible(true);
 	}
 	
-	public static void setColor(Color color){
-		drawPanel.setColor(color);
+
+	public static void setColor() {
+		drawPanel.setColor(colorPanel.getChangeColor());
+	}
+	
+	public static void setButton() {
+		drawPanel.setButton(toolPanel.getCurrentButton());
+	}
+	
+	public static void setWord(){
+		drawPanel.setWord(toolPanel.getWord());
+	}
+	
+	public static void saveFile() {
+		JFileChooser chooser = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("(*.cad)", "cad");
+		chooser.setFileFilter(filter);
+		int res = chooser.showSaveDialog(null);
+		if(res == JFileChooser.APPROVE_OPTION){
+			String path = chooser.getSelectedFile().getAbsolutePath() + ".cad";
+			try {
+				ObjectOutputStream objOut = new ObjectOutputStream(new FileOutputStream(path));
+				objOut.writeObject(drawPanel.save());
+				objOut.flush();
+				objOut.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public static void openFile() {
+		JFileChooser chooser = new JFileChooser("ÇëÑ¡ÔñÎÄ¼þ");
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("(*.cad)", "cad");
+		chooser.setFileFilter(filter);
+		int res = chooser.showOpenDialog(null);
+		if(res == JFileChooser.APPROVE_OPTION){
+			String path = chooser.getSelectedFile().getAbsolutePath();
+			try {
+				ObjectInputStream objIn = new ObjectInputStream(new FileInputStream(path));
+				@SuppressWarnings("unchecked")
+				ArrayList<Shape> listShape = (ArrayList<Shape>)objIn.readObject();
+				drawPanel.recover(listShape);
+				objIn.close();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
 	}
 
 	public static void main(String[] args) {

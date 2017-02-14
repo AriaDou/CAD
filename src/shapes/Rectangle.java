@@ -4,6 +4,10 @@ import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 
 public class Rectangle extends Shape {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int x;
 	private int y;
 	private int width;

@@ -2,8 +2,13 @@ package shapes;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.io.Serializable;
 
-public abstract class Shape {
+public abstract class Shape implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected Color color = Color.BLACK;
 	protected float thick;
 	

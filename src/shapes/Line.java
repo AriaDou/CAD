@@ -4,6 +4,10 @@ import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 
 public class Line extends Shape {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int x1;
 	private int y1;
 	private int x2;

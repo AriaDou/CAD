@@ -6,6 +6,10 @@ import java.awt.Graphics2D;
 import shapes.Shape;
 
 public class Word extends Shape {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String str;
 	private int x;
 	private int y;
