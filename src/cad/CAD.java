@@ -45,20 +45,19 @@ public class CAD {
 		frame.setVisible(true);
 	}
 	
-
-	public static void setColor() {
+	public static void setColor() {//更新颜色
 		drawPanel.setColor(colorPanel.getChangeColor());
 	}
 	
-	public static void setButton() {
+	public static void setButton() {//更新按钮
 		drawPanel.setButton(toolPanel.getCurrentButton());
 	}
 	
-	public static void setWord(){
+	public static void setWord(){//更新单词
 		drawPanel.setWord(toolPanel.getWord());
 	}
 	
-	public static void saveFile() {
+	public static void saveFile() {//保存文件
 		JFileChooser chooser = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("(*.cad)", "cad");
 		chooser.setFileFilter(filter);
@@ -76,7 +75,7 @@ public class CAD {
 		}
 	}
 	
-	public static void openFile() {
+	public static void openFile() {//打开文件
 		JFileChooser chooser = new JFileChooser("请选择文件");
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("(*.cad)", "cad");
 		chooser.setFileFilter(filter);

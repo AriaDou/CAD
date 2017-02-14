@@ -8,7 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class ToolsPanel extends JPanel {
+public class ToolsPanel extends JPanel {//形状选择工具栏
 	/**
 	 * 
 	 */

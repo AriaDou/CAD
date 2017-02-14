@@ -19,11 +19,8 @@ import shapes.Rectangle;
 import shapes.Shape;
 import shapes.Word;
 
-public class DrawPanel extends JPanel {
+public class DrawPanel extends JPanel {//绘画区
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 6823162012684778136L;
 	private Shape currentShape = null;
 	private String word = "null";
@@ -32,11 +29,11 @@ public class DrawPanel extends JPanel {
 	private int index = 0;
 	private float thick = 3.0f;
 	private int x1, x2, y1, y2;
-	private ArrayList<Shape> listShape = new ArrayList<Shape>();//要画的图像
+	private ArrayList<Shape> listShape = new ArrayList<Shape>();//要画的图形
 	
 	public DrawPanel() {
 		setBackground(Color.WHITE);
-		addMouseListener(new MouseAdapter() {
+		addMouseListener(new MouseAdapter() {//鼠标按压时获取初始位置，判断该位置是否存在图形，不存在则准备添加一个图形
 
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -55,7 +52,8 @@ public class DrawPanel extends JPanel {
 				}
 			}
 		});
-		addMouseMotionListener(new MouseMotionAdapter() {
+		
+		addMouseMotionListener(new MouseMotionAdapter() {//鼠标拖动时获取当前位置，存在图形则鼠标拖动图形移动，否则新建一个图形
 			
 			@Override
 			public void mouseDragged(MouseEvent e) {
@@ -74,7 +72,7 @@ public class DrawPanel extends JPanel {
 			}
 		});
 		
-		addKeyListener(new KeyAdapter() {
+		addKeyListener(new KeyAdapter() {//按,.(<>)可以改变粗细，按+-可以改变大小，按r清除图形
 
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -83,11 +81,13 @@ public class DrawPanel extends JPanel {
 					currentShape = listShape.remove(index);
 					switch (keyChar) {
 					case ',':
+					case '<':
 						currentShape.downThick();
 						listShape.add(currentShape);
 						repaint();
 						break;
 					case '.':
+					case '>':
 						currentShape.upThick();
 						listShape.add(currentShape);
 						repaint();
@@ -101,6 +101,7 @@ public class DrawPanel extends JPanel {
 						listShape.add(currentShape);
 						break;
 					case 'r':
+					case 'R':
 						break;
 					default:
 						listShape.add(currentShape);
@@ -136,7 +137,7 @@ public class DrawPanel extends JPanel {
 		repaint();
 	}
 	
-	public void setColor(Color color) {
+	public void setColor(Color color) {//修改某图形的颜色
 		if(listShape.isEmpty())
 				return;
 		if(index < listShape.size()){
@@ -165,11 +166,11 @@ public class DrawPanel extends JPanel {
 		}			
 	}
 
-	public ArrayList<Shape> save() {
+	public ArrayList<Shape> save() {//保存文件
 		return listShape;
 	}
 
-	public void recover(ArrayList<Shape> listShape) {
+	public void recover(ArrayList<Shape> listShape) {//恢复文件
 		this.listShape = listShape;
 		currentShape = null;
 		word = "null";

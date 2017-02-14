@@ -8,11 +8,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 
 
-public class ColorPanel extends JPanel {
+public class ColorPanel extends JPanel {//ÑÕÉ«Ñ¡ÔñÃæ°å
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 6412809820291040827L;
 	private Color[] arrayColor = {
 			Color.BLACK, Color.BLUE, Color.CYAN, 

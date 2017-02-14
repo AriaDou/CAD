@@ -44,7 +44,7 @@ public class Word extends Shape {
 
 	@Override
 	public boolean contains(int x, int y) {
-		if(x>=this.x && x<=this.x+Math.abs(size))
+		if(x>=this.x && x<=this.x+Math.abs(size)*str.length())
 			if(y>=this.y-Math.abs(size) && y<=this.y)
 				return true;
 		return false;
