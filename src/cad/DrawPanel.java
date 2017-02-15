@@ -31,7 +31,7 @@ public class DrawPanel extends JPanel {//绘画区
 	private int x1, x2, y1, y2;
 	private ArrayList<Shape> listShape = new ArrayList<Shape>();//要画的图形
 	
-	public DrawPanel() {
+	public DrawPanel(CAD cad) {
 		setBackground(Color.WHITE);
 		addMouseListener(new MouseAdapter() {//鼠标按压时获取初始位置，判断该位置是否存在图形，不存在则准备添加一个图形
 

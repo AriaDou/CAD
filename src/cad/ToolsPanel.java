@@ -17,7 +17,7 @@ public class ToolsPanel extends JPanel {//形状选择工具栏
 	private String word = "null";
 	private String[] arrayButton = {"直线", "矩形", "圆", "文字"};
 
-	public ToolsPanel(LayoutManager arg0){
+	public ToolsPanel(CAD cad, LayoutManager arg0){
 		super(arg0);
 		for(int i = 0; i < arrayButton.length; i++)
 		{
@@ -30,9 +30,9 @@ public class ToolsPanel extends JPanel {//形状选择工具栏
 					currentButton = e.getActionCommand();
 					if(currentButton.equals("文字")){
 						word = JOptionPane.showInputDialog("Please input a value");
-						CAD.setWord();
+						cad.setWord();
 					}
-					CAD.setButton();
+					cad.setButton();
 				}
 			});
 			this.add(button);

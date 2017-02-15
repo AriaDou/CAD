@@ -16,19 +16,19 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import shapes.Shape;
 
 public class CAD {
-	private static JFrame frame;
-	private static MenuBar menuBar;
-	private static ToolsPanel toolPanel;
-	private static ColorPanel colorPanel;
-	private static DrawPanel drawPanel;
+	private JFrame frame;
+	private MenuBar menuBar;
+	private ToolsPanel toolPanel;
+	private ColorPanel colorPanel;
+	private DrawPanel drawPanel;
 	
 	public CAD(){
 		frame = new JFrame("miniCAD");
 		
-		menuBar = new MenuBar();
-		toolPanel = new ToolsPanel(new GridLayout(5,1));
-		colorPanel = new ColorPanel(new GridLayout(3,4));
-		drawPanel = new DrawPanel();
+		menuBar = new MenuBar(this);
+		toolPanel = new ToolsPanel(this, new GridLayout(5,1));
+		colorPanel = new ColorPanel(this, new GridLayout(3,4));
+		drawPanel = new DrawPanel(this);
 		
 		toolPanel.add(colorPanel);
 		
@@ -45,19 +45,19 @@ public class CAD {
 		frame.setVisible(true);
 	}
 	
-	public static void setColor() {//更新颜色
+	public void setColor() {//更新颜色
 		drawPanel.setColor(colorPanel.getChangeColor());
 	}
 	
-	public static void setButton() {//更新按钮
+	public void setButton() {//更新按钮
 		drawPanel.setButton(toolPanel.getCurrentButton());
 	}
 	
-	public static void setWord(){//更新单词
+	public void setWord(){//更新单词
 		drawPanel.setWord(toolPanel.getWord());
 	}
 	
-	public static void saveFile() {//保存文件
+	public void saveFile() {//保存文件
 		JFileChooser chooser = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("(*.cad)", "cad");
 		chooser.setFileFilter(filter);
@@ -75,7 +75,7 @@ public class CAD {
 		}
 	}
 	
-	public static void openFile() {//打开文件
+	public void openFile() {//打开文件
 		JFileChooser chooser = new JFileChooser("请选择文件");
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("(*.cad)", "cad");
 		chooser.setFileFilter(filter);

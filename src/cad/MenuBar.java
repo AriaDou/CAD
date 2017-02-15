@@ -15,7 +15,7 @@ public class MenuBar extends JMenuBar {//菜单
 	private String[] arrayMenu = {"文件", };
 	private String[][] arrayMenuItem = {{"保存", "打开", }, };
 	
-	public MenuBar() {
+	public MenuBar(CAD cad) {
 		
 		for(int i = 0; i<arrayMenu.length; i++){
 			JMenu menu = new JMenu(arrayMenu[i]);
@@ -30,9 +30,9 @@ public class MenuBar extends JMenuBar {//菜单
 						JMenuItem menuItem = (JMenuItem)e.getSource();
 						String text = menuItem.getText();
 						if(text.equals("保存"))
-							CAD.saveFile();
+							cad.saveFile();
 						else if (text.equals("打开")) {
-							CAD.openFile();
+							cad.openFile();
 						}
 					}
 				});

@@ -18,7 +18,7 @@ public class ColorPanel extends JPanel {//颜色选择面板
 			Color.RED, Color.WHITE, Color.YELLOW};
 	private  Color changeColor = Color.BLACK;
 	
-	public ColorPanel(LayoutManager layout) {
+	public ColorPanel(CAD cad, LayoutManager layout) {
 		super(layout);
 		for(int i = 0; i<arrayColor.length; i++){
 			JPanel colorPanelItem = new JPanel();
@@ -29,7 +29,7 @@ public class ColorPanel extends JPanel {//颜色选择面板
 				public void mousePressed(MouseEvent e) {
 					JPanel colorItem = (JPanel) e.getSource();
 					changeColor = colorItem.getBackground();
-					CAD.setColor();
+					cad.setColor();
 				}
 				
 			});
